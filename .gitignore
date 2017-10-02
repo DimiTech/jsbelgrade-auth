@@ -1,0 +1,6 @@
+todo.txt
+node_modules/
+.nginx.bak/
+.DS_Store
+**/*.swp
+

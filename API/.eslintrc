@@ -1,0 +1,82 @@
+{
+    "env": {
+        "node": true,
+        "es6": true,
+        "mocha": true
+    },
+
+    "extends": "eslint:recommended",
+
+    "parserOptions": {
+        "ecmaVersion": 8
+    },
+
+    "rules": {
+
+        // General rules
+        "no-console"                  :   "warn",
+        "eqeqeq"                      :   "error",
+        "curly"                       :   "error",
+        "no-use-before-define"        :   "error",
+        "comma-dangle"                : [ "error", "never" ],
+
+        // Semicolons
+        "semi"                        : [ "error", "never" ],
+        "semi-spacing"                :   "error",
+        
+        // Quoting
+        "quote-props"                 : [ "warn", "always" ],
+        
+        // Spacing & linebreaks
+        "indent"                      : [ "error", 4 ],
+        "no-tabs"                     :   "error",
+        "space-before-blocks"         :   "error",
+        "array-bracket-spacing"       :   "error",
+        "comma-spacing"               :   "error",
+        "object-curly-spacing"        : [ "error", "always" ],
+        "linebreak-style"             : [ "error", "unix"   ],
+        "eol-last"                    : [ "error", "always" ],
+        "computed-property-spacing"   : [ "error", "never"  ],
+        "space-infix-ops"             :   "error",
+        "switch-colon-spacing"        :   "error",
+        // "space-in-parens"             : [ "error", "never" ],
+        "key-spacing" : [ "error", { 
+            "beforeColon" : true,
+            "afterColon"  : true,
+            "align"       : "colon"
+        }],
+        "keyword-spacing" : [ "error", { 
+            "before" : true,
+            "after"  : true 
+        }],
+        "no-trailing-spaces"          :   "error",
+
+        // Variables
+        "no-var"                      :   "error",
+        "prefer-const"                :   "warn",
+
+        // If-else statements
+        "no-lonely-if"                :   "error",
+
+        // Functions
+        "max-params"                  : [ "error", 4 ],
+        "space-before-function-paren" : [ "error", "never" ],
+
+        // Object constructors
+        "new-parens"                  :   "error",
+        "new-cap"                     : [ "warn", {
+            "newIsCap"   : true,
+            "properties" : true
+        }],
+
+        // Comments
+        "capitalized-comments"        :   "error",
+        "spaced-comment"              : [ "error", "always" ],
+        "valid-jsdoc"                 :   "error",
+
+        // ES6
+        "arrow-spacing"               :   "error"
+
+    }
+
+}

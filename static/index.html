@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OIDC Demo</title>
+    <meta charset="UTF-8">
+    <style>
+        html, button, label {
+            font-family: 'Verdana', sans-serif;
+            font-size: 2em;
+            text-align: center;
+        }
+        input {
+            font-size: 1.1em;
+            margin: 0.7em 0;
+        }
+        pre {
+            display: inline-block;
+            text-align: left;
+        }
+    </style>
+    <script src="./lib/axios.min.js"></script>
+    <script src="/auth/js/keycloak.js"></script>
+</head>
+<body>
+    <div> 
+        <label for="access-token">Access token:</label>
+        <input id="access-token">
+        <br>
+        <button id="api-call" autofocus>Call API</button>
+        <br>
+        <pre id="api-response">
+            <!-- API response will be displayed here. -->
+        </pre>
+    </div>
+<script>
+    var callAPIButton    = document.getElementById('api-call')
+    var APIResponseArea  = document.getElementById('api-response')
+    var accessTokenInput = document.getElementById('access-token')
+    var API_URL = 'http://jsbelgrade.com/api'
+    callAPIButton.addEventListener('click', () => {
+        axios.request({
+            url: API_URL,
+            headers: {
+                "Authorization": "Bearer " + accessTokenInput.value 
+            }
+        })
+        .then(res => {
+            APIResponseArea.innerHTML = 'Status: ' + res.status + ' ' +
+                res.statusText + '\nBody: ' + 
+                JSON.stringify(res.data, null, 4) 
+        })
+        .catch(err => {
+            let errorText
+            if (err.response) {
+                APIResponseArea.innerHTML = 'Status: ' + err.response.status +
+                    ' ' + err.response.statusText
+            } else {
+                APIResponseArea.innerHTML = err.message
+            }
+        })
+    })
+</script>
+</body>
+</html>

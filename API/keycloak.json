@@ -1,0 +1,10 @@
+{
+  "realm": "example-realm",
+  "auth-server-url": "http://localhost:8080/auth",
+  "ssl-required": "external",
+  "resource": "example-app",
+  "credentials": {
+    "secret": "mysecret"
+  },
+  "bearerOnly": true
+}

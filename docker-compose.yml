@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  nginx:
+    image: nginx
+    volumes:
+      - './static:/usr/share/nginx/html:ro'
+      - './nginx/conf.d:/etc/nginx/conf.d:ro'
+    ports:
+      - 80:80
+
+  auth_server:
+    image: jboss/keycloak
+    environment:
+     - KEYCLOAK_LOGLEVEL=DEBUG
+     - KEYCLOAK_USER=admin
+     - KEYCLOAK_PASSWORD=admin
+    ports:
+      - 8080:8080
+
+  api:
+    build: ./API/
+    volumes:
+      - './API/app:/usr/src/app'
+    ports: 
+      - 8000:8000
+
