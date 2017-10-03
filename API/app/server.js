@@ -12,7 +12,7 @@ app.disable('x-powered-by')
 
 app.use(auth.middleware())
 
-app.get('/', auth.protect(), (req, res, next) => { // TODO: Change the lock to "secure()"
+app.get('/',/* auth.protect(), */(req, res, next) => { // TODO: Change the lock to "secure()"
     res.status(200).json({
         "data" : "Private API data!"
     })

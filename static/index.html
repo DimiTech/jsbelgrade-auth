@@ -9,7 +9,7 @@
             font-size: 2em;
             text-align: center;
         }
-        input {
+        textarea {
             font-size: 1.1em;
             margin: 0.7em 0;
         }
@@ -23,8 +23,8 @@
 </head>
 <body>
     <div> 
-        <label for="access-token">Access token:</label>
-        <input id="access-token">
+        <textarea id="access-token" placeholder="Access Token" cols="40"
+            rows="10"></textarea>
         <br>
         <button id="api-call" autofocus>Call API</button>
         <br>
@@ -36,7 +36,7 @@
     var callAPIButton    = document.getElementById('api-call')
     var APIResponseArea  = document.getElementById('api-response')
     var accessTokenInput = document.getElementById('access-token')
-    var API_URL = 'http://jsbelgrade.com/api'
+    var API_URL = '/api'
     callAPIButton.addEventListener('click', () => {
         axios.request({
             url: API_URL,
