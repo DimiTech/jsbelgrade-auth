@@ -57,7 +57,9 @@
             "adminUrl" : "http://localhost:8000/",
             "baseUrl" : "http://localhost:8000/",
             "redirectUris": [
-                "http://localhost:8000/*"
+                "http://localhost:8000/*",
+                "http://jsbelgrade.com/*",
+                "http://www.jsbelgrade.com/*"
             ],
             "webOrigins": []
         }
