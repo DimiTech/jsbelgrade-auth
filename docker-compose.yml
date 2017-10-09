@@ -23,13 +23,9 @@ services:
     build: ./fileserver/
     volumes:
       - './fileserver/app:/usr/src/app'
-    ports: 
-      - 3000:3000
 
   api:
     build: ./API/
     volumes:
       - './API/app:/usr/src/app'
-    ports: 
-      - 8000:8000
 
