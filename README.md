@@ -33,6 +33,10 @@ make up
 ### 2. Edit the 'keycloak-auth-utils' module and copy it along with 'keycloak-connect' to the docker container:
 
 ```
+cd ./API
+npm i
+# Edit the neccessary file...
+cd ../
 docker cp ./API/node_modules/keycloak-connect <CONTAINER_ID>:/usr/src/node_modules/
 ```
 
@@ -52,7 +56,7 @@ docker cp ./themes/* <CONTAINER_ID>:/opt/jboss/keycloak/themes
 
 ## OAuth2.0 / OIDC Grant Types:
 
-### Authorization code
+### 1. Authorization code
 
 Open your browser and go to `http://jsbelgrade.com` and click the `Login` link.
 
@@ -60,7 +64,7 @@ Open your browser and go to `http://jsbelgrade.com` and click the `Login` link.
 
 *Important:* In order to use the commands listed below `curl` and `jq` must be installed.
 
-### Client Credentials
+### 2. Client Credentials
 
 ```
 curl -s -X POST \
@@ -72,7 +76,7 @@ http://jsbelgrade.com/auth/realms/jsbelgrade/protocol/openid-connect/token \
 | jq
 ```
 
-### Resource Owner Password Credentials
+### 3. Resource Owner Password Credentials
 
 ```
 curl -s -X POST \
@@ -85,4 +89,8 @@ curl -s -X POST \
 http://jsbelgrade.com/auth/realms/jsbelgrade/protocol/openid-connect/token \
 | jq
 ```
+
+### 4. Implicit
+
+Not implemented...
 
