@@ -42,8 +42,18 @@
     var callAPIButton    = document.getElementById('api-call')
     var APIResponseArea  = document.getElementById('api-response')
     var accessTokenInput = document.getElementById('access-token')
+    
     var API_HOST = 'http://jsbelgrade.com'
     var API_URL = API_HOST + '/api'
+
+    callAPIButton.addEventListener('mousedown', () => {
+        APIResponseArea.innerHTML = ''
+    })
+
+    callAPIButton.addEventListener('keydown', () => {
+        APIResponseArea.innerHTML = ''
+    })
+
     callAPIButton.addEventListener('click', () => {
         axios.request({
             url: API_URL,
