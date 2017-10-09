@@ -5,7 +5,7 @@ services:
   nginx:
     image: nginx
     volumes:
-      - './static:/usr/share/nginx/html:ro'
+        # - './static:/usr/share/nginx/html:ro'
       - './nginx/conf.d:/etc/nginx/conf.d:ro'
     ports:
       - 80:80
@@ -19,10 +19,13 @@ services:
     ports:
       - 8080:8080
 
+  fileserver:
+    build: ./fileserver/
+    volumes:
+      - './fileserver/app:/usr/src/app'
+
   api:
     build: ./API/
     volumes:
       - './API/app:/usr/src/app'
-    ports: 
-      - 8000:8000
 

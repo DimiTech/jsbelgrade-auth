@@ -1,8 +1,5 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <title>OIDC Demo</title>
-    <meta charset="UTF-8">
     <style>
         html, button, label {
             font-family: Cursive, monospace;
@@ -19,12 +16,21 @@
         }
     </style>
     <script src="./lib/axios.min.js"></script>
-    <script src="/auth/js/keycloak.js"></script>
+    <script src="http://jsbelgrade.com/auth/js/keycloak.min.js"></script>
 </head>
 <body>
+
+    <p>
+        {{^result}}
+            <a href="/login">Login</a>
+        {{/result}}
+        {{#result}}
+            <a href="/logout">Logout</a>
+        {{/result}}
+    </p>
     <div> 
         <textarea id="access-token" placeholder="Access Token" cols="100"
-            rows="15"></textarea>
+            rows="15">{{result}}</textarea>
         <br>
         <button id="api-call" autofocus>Call API</button>
         <br>
@@ -36,7 +42,8 @@
     var callAPIButton    = document.getElementById('api-call')
     var APIResponseArea  = document.getElementById('api-response')
     var accessTokenInput = document.getElementById('access-token')
-    var API_URL = '/api'
+    var API_HOST = 'http://jsbelgrade.com'
+    var API_URL = API_HOST + '/api'
     callAPIButton.addEventListener('click', () => {
         axios.request({
             url: API_URL,
@@ -45,17 +52,19 @@
             }
         })
         .then(res => {
+            APIResponseArea.style.color = 'green'
             APIResponseArea.innerHTML = 'Status: ' + res.status + ' ' +
                 res.statusText + '\nBody: ' + 
                 JSON.stringify(res.data, null, 4) 
         })
         .catch(err => {
             let errorText
+            APIResponseArea.style.color = 'red'
             if (err.response) {
                 APIResponseArea.innerHTML = 'Status: ' + err.response.status +
                     ' ' + err.response.statusText
             } else {
-                APIResponseArea.innerHTML = err.message
+                APIResponseArea.innerHTML = 'FAILED' // err.message
             }
         })
     })
