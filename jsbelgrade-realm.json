@@ -54,10 +54,11 @@
             "implicitFlowEnabled" : true,
             "directAccessGrantsEnabled" : true,
             "baseUrl": "/",
-            "adminUrl" : "http://localhost:8000/",
-            "baseUrl" : "http://localhost:8000/",
+            "adminUrl" : "http://localhost:3000/*",
+            "baseUrl" : "http://localhost:3000/*",
             "redirectUris": [
                 "http://localhost:8000/*",
+                "http://localhost:3000/*",
                 "http://jsbelgrade.com/*",
                 "http://www.jsbelgrade.com/*"
             ],
