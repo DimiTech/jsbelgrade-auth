@@ -33,10 +33,10 @@ make up
 ### 2. Edit the 'keycloak-auth-utils' module and copy it along with 'keycloak-connect' to the docker container:
 
 ```
-docker cp ./API/node_modules/keycloak-connect fb56d1ce56ba:/usr/src/node_modules/
+docker cp ./API/node_modules/keycloak-connect <CONTAINER_ID>:/usr/src/node_modules/
 ```
 
-*Important:* Save the `./API/app/server.js` in order to trigger the app restart.
+*Important:* Open and save the `./API/app/server.js` file (without changing it) in order to trigger _supervisor_ to restart the app.
 
 ### 3. Import the realm on KeyCloak:
 
@@ -47,10 +47,4 @@ docker cp ./API/node_modules/keycloak-connect fb56d1ce56ba:/usr/src/node_modules
 ### 4. Copy the theme and enable it on KeyCloak:
 
 ```
-docker cp ./themes/* d8735375339a:/opt/jboss/keycloak/themes
-```
-
-### 5. Open the Client App front-end:
-
-Go to: `jsbelgrade.com`
-
+docker cp ./themes/* <CONTAINER_ID>:/opt/jboss/keycloak/themes
