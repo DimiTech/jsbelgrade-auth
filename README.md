@@ -48,3 +48,41 @@ docker cp ./API/node_modules/keycloak-connect <CONTAINER_ID>:/usr/src/node_modul
 
 ```
 docker cp ./themes/* <CONTAINER_ID>:/opt/jboss/keycloak/themes
+
+
+## OAuth2.0 / OIDC Grant Types:
+
+### Authorization code
+
+Open your browser and go to `http://jsbelgrade.com` and click the `Login` link.
+
+---
+
+*Important:* In order to use the commands listed below `curl` and `jq` must be installed.
+
+### Client Credentials
+
+```
+curl -s -X POST \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "grant_type=client_credentials" \
+-d "client_id=jsbelgrade" \
+-d "client_secret=0eb83b4f-d4ce-457c-9bad-0aa37cd54367" \
+http://jsbelgrade.com/auth/realms/jsbelgrade/protocol/openid-connect/token \
+| jq
+```
+
+### Resource Owner Password Credentials
+
+```
+curl -s -X POST \
+-H "Content-Type: application/x-www-form-urlencoded" \
+-d "grant_type=password" \
+-d "client_id=jsbelgrade" \
+-d "client_secret=0eb83b4f-d4ce-457c-9bad-0aa37cd54367" \
+-d "username=samuraicop" \
+-d "password=keepitwarm" \
+http://jsbelgrade.com/auth/realms/jsbelgrade/protocol/openid-connect/token \
+| jq
+```
+
