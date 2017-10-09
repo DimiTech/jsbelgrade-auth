@@ -1,0 +1,156 @@
+<html>
+<head>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+
+        li a {
+            display: block;
+            color: #000;
+            padding: 8px 0 8px 16px;
+            text-decoration: none;
+
+        }
+
+        /* Change the link color on hover */
+        li a:hover {
+            background-color: #555;
+            color: white;
+        }
+
+        .nav {
+            float: left;
+            width: 250px;
+        }
+        .content {
+            margin-left: 270px;
+
+        }
+        pre {
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+    </style>
+    <script src="./lib/axios.min.js"></script>
+    <script src="http://jsbelgrade.com/auth/js/keycloak.min.js"></script>
+</head>
+<body>
+
+<h1 style="width: 100%; text-align: center;">NodeJS Keycloak Example</h1>
+<hr/>
+
+<div class="nav">
+    <ul>
+        <li><a href="/login">Login</a></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</div>
+<div class="content">
+    <h2>Result</h2>
+    <pre id="output">
+{{result}}
+    </pre>
+
+    <h2>Events</h2>
+    <pre id="events">
+{{event}}
+    </pre>
+</div>
+
+    <div> 
+        <textarea id="access-token" placeholder="Access Token" cols="100"
+            rows="15"></textarea>
+        <br>
+        <button id="api-call" autofocus>Call API</button>
+        <button id="login-btn" autofocus>Log In</button>
+        <button id="logout-btn" autofocus>Log Out</button>
+        <br>
+        <pre id="api-response">
+            <!-- API response will be displayed here. -->
+        </pre>
+    </div>
+<script>
+    var callAPIButton    = document.getElementById('api-call')
+    var APIResponseArea  = document.getElementById('api-response')
+    var accessTokenInput = document.getElementById('access-token')
+    var API_HOST = 'http://jsbelgrade.com'
+    var API_URL = API_HOST + '/api'
+    callAPIButton.addEventListener('click', () => {
+        axios.request({
+            url: API_URL,
+            headers: {
+                "Authorization": "Bearer " + accessTokenInput.value 
+            }
+        })
+        .then(res => {
+            APIResponseArea.innerHTML = 'Status: ' + res.status + ' ' +
+                res.statusText + '\nBody: ' + 
+                JSON.stringify(res.data, null, 4) 
+        })
+        .catch(err => {
+            let errorText
+            if (err.response) {
+                APIResponseArea.innerHTML = 'Status: ' + err.response.status +
+                    ' ' + err.response.statusText
+            } else {
+                APIResponseArea.innerHTML = err.message
+            }
+        })
+    })
+</script>
+<!-- <script>
+    var loginBtn  = document.getElementById('login-btn')
+    var logoutBtn = document.getElementById('logout-btn')
+
+    var keycloak = Keycloak(
+    {
+        url: 'http://auth_server:8080/auth',
+        realm: 'jsbelgrade',
+        clientId: 'jsbelgrade'
+    }
+    // {
+    //     "realm": "jsbelgrade",
+    //     "auth-server-url": "http://auth_server:8080/auth",
+    //     "ssl-required": "none",
+    //     "resource": "jsbelgrade",
+    //     "credentials": {
+    //         "secret": "0eb83b4f-d4ce-457c-9bad-0aa37cd54367"
+    //     }
+    // }
+    )
+    keycloak.init().success(function(authenticated) {
+        if (authenticated) showLogoutBtn()
+        else showLoginBtn()
+
+        loginBtn.addEventListener('click', function(event) {
+            keycloak.login()
+        })
+        logoutBtn.addEventListener('click', function (event) {
+            keycloak.logout()
+        })
+    })
+    .error(function() {
+        alert('failed to initialize')
+    })
+
+    function showLoginBtn() {
+        loginBtn .style.display = 'inline'
+        logoutBtn.style.display = 'none'
+    }
+
+    function showLogoutBtn() {
+        loginBtn .style.display = 'none'
+        logoutBtn.style.display = 'inline'
+    }
+</script>
+-->
+
+</body>
+</html>

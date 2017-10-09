@@ -19,7 +19,7 @@
         }
     </style>
     <script src="./lib/axios.min.js"></script>
-    <script src="/auth/js/keycloak.js"></script>
+    <script src="http://jsbelgrade.com/auth/js/keycloak.min.js"></script>
 </head>
 <body>
     <div> 
@@ -27,6 +27,8 @@
             rows="15"></textarea>
         <br>
         <button id="api-call" autofocus>Call API</button>
+        <button id="login-btn" autofocus>Log In</button>
+        <button id="logout-btn" autofocus>Log Out</button>
         <br>
         <pre id="api-response">
             <!-- API response will be displayed here. -->
@@ -59,6 +61,51 @@
             }
         })
     })
+</script>
+<script>
+    var loginBtn  = document.getElementById('login-btn')
+    var logoutBtn = document.getElementById('logout-btn')
+
+    var keycloak = Keycloak(
+    {
+        url: 'http://auth_server:8080/auth',
+        realm: 'jsbelgrade',
+        clientId: 'jsbelgrade'
+    }
+    // {
+    //     "realm": "jsbelgrade",
+    //     "auth-server-url": "http://auth_server:8080/auth",
+    //     "ssl-required": "none",
+    //     "resource": "jsbelgrade",
+    //     "credentials": {
+    //         "secret": "0eb83b4f-d4ce-457c-9bad-0aa37cd54367"
+    //     }
+    // }
+    )
+    keycloak.init().success(function(authenticated) {
+        if (authenticated) showLogoutBtn()
+        else showLoginBtn()
+
+        loginBtn.addEventListener('click', function(event) {
+            keycloak.login()
+        })
+        logoutBtn.addEventListener('click', function (event) {
+            keycloak.logout()
+        })
+    })
+    .error(function() {
+        alert('failed to initialize')
+    })
+
+    function showLoginBtn() {
+        loginBtn .style.display = 'inline'
+        logoutBtn.style.display = 'none'
+    }
+
+    function showLogoutBtn() {
+        loginBtn .style.display = 'none'
+        logoutBtn.style.display = 'inline'
+    }
 </script>
 </body>
 </html>
