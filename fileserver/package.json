@@ -4,7 +4,7 @@
   "description": "Example page that demonstrates available keycloak functionality",
   "main": "index.js",
   "scripts": {
-    "start": "node ./app/index.js"
+    "start": "supervisor ./app/server.js"
   },
   "author": "Roman Jurkov <winfinit@gmail.com>",
   "license": "Apache-2.0",
@@ -13,5 +13,8 @@
     "hogan-express": "*",
     "express": "*",
     "express-session": "*"
+  },
+  "devDependencies": {
+    "supervisor": "^0.12.0"
   }
 }

@@ -1,9 +1,0 @@
-{
-  "realm": "jsbelgrade",
-  "auth-server-url": "http://auth_server:8080/auth",
-  "ssl-required": "none",
-  "resource": "jsbelgrade",
-  "credentials": {
-    "secret": "0eb83b4f-d4ce-457c-9bad-0aa37cd54367"
-  }
-}

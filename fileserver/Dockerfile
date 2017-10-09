@@ -3,6 +3,7 @@ from node:8.6
 RUN mkdir -p /usr/src/app
 
 COPY package.json /usr/src/
+COPY keycloak.json /usr/src/
 COPY ./app /usr/src/app
 
 WORKDIR /usr/src

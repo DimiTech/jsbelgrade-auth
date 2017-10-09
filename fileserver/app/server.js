@@ -1,19 +1,3 @@
-/*
- * Copyright 2016 Red Hat Inc. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
- */
-
 var path = require('path');
 var Keycloak = require('keycloak-connect');
 var hogan = require('hogan-express');
@@ -61,14 +45,14 @@ app.use(session({
 // installed from the Keycloak web console.
 
 var keycloak = new Keycloak({
-  "realm": "jsbelgrade",
-  "auth-server-url": "http://auth_server:8080/auth",
-  "ssl-required": "none",
-  "resource": "jsbelgrade",
-  "credentials": {
-    "secret": "0eb83b4f-d4ce-457c-9bad-0aa37cd54367"
-  },
-  store: memoryStore
+//   "realm": "jsbelgrade",
+//   "auth-server-url": "http://auth_server:8080/auth",
+//   "ssl-required": "none",
+//   "resource": "jsbelgrade",
+//   "credentials": {
+//     "secret": "0eb83b4f-d4ce-457c-9bad-0aa37cd54367"
+//   },
+  "store": memoryStore
 });
 
 // Install the Keycloak middleware.
@@ -87,7 +71,6 @@ app.use(keycloak.middleware({
 
 app.get('/login', keycloak.protect(), function (req, res) {
   res.render('index', {
-    result: JSON.stringify(JSON.parse(req.session['keycloak-token']), null, 4),
-    event: '1. Authentication\n2. Login'
+    result: JSON.parse(req.session['keycloak-token']).access_token
   });
 });

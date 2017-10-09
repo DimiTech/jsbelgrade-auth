@@ -20,9 +20,9 @@ services:
       - 8080:8080
 
   fileserver:
-    build: ./FileServer/
+    build: ./fileserver/
     volumes:
-      - './FileServer/app:/usr/src/app'
+      - './fileserver/app:/usr/src/app'
     ports: 
       - 3000:3000
 
