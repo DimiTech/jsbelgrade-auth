@@ -48,7 +48,7 @@ docker cp ./API/node_modules/keycloak-connect <CONTAINER_ID>:/usr/src/node_modul
 
 ```
 docker cp ./themes/* <CONTAINER_ID>:/opt/jboss/keycloak/themes
-
+```
 
 ## OAuth2.0 / OIDC Grant Types:
 
