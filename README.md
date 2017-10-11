@@ -35,7 +35,9 @@ make up
 ```
 cd ./API
 npm i
-# Edit the neccessary file...
+# Comment out lines 283 to (and including) line 286 from the following file:
+# ./API/node_modules/keycloak-connect/node_modules/keycloak-auth-utils/lib/grant-manager.js
+# This makes the demo usable without complicating things too much.
 cd ../
 docker cp ./API/node_modules/keycloak-connect <CONTAINER_ID>:/usr/src/node_modules/
 ```
